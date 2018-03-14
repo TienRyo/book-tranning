@@ -5,7 +5,7 @@
 <body>
 <header>
     <h1>
-        <a href="/book/save/{{book.getId()}}">{{book.getTitle()}}</a>
+        <a href="/book/save/{{ book.getId() }}">{{book.getTitle()}}</a>
     </h1>
     <small>
         {{ book.getAuthor()}}
@@ -15,6 +15,10 @@
     </small>
     <small>
         {{ book.getPrice()}}
+    </small>
+    <small>
+        <a href="/book/save/{{ book.getId() }}">Edit</a>
+        <a href="/book/delete/{{ book.getId() }}">Delete</a>
     </small>
 </body>
 </html>

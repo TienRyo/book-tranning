@@ -15,37 +15,32 @@
 <section>
     <br>
     {% if book %}
-        <form method="post" action="/book" role="form">
-            <labal for="title">Title : </labal><input id="title" name="title" value="{{ book.getTitle() }}"/>
-            <labal for="author">Author : </labal><input id="author" name="author" value="{{ book.getAuthor() }}"/>
-            <select name="publisher">
-                <option value="{{ book.getPublisher().getName() }}"></option>
-                {% for publisher in publishers %}
-                <option>
-                    {{publisher.getName()}}
-                </option>
-                {% endfor %}
-            </select>
-            <labal for="price">Price : </labal><input id="price" name="price" value="{{ book.getPrice() }}"/>
-            <input type="submit" value="Save"/>
-        </form>
+    <form method="post" action="/book/{{ book.getId() }}" role="form">
+        <labal for="title">Title : </labal><input id="title" name="title" value="{{ book.getTitle() }}"/>
+        <labal for="author">Author : </labal><input id="author" name="author" value="{{ book.getAuthor() }}"/>
+        <labal for="publisher">Publisher</labal>
+        <select name="publisher_id" id="publisher">
+            {% for publisher in publishers %}
+            <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
+            {% endfor %}
+        </select>
+        <labal for="price">Price : </labal><input id="price" name="price" value="{{ book.getPrice() }}"/>
+        <input type="submit" value="Save"/>
+    </form>
     {% else %}
     <form method="post" action="/book" role="form">
         <labal for="title">Title : </labal><input id="title" name="title"/>
         <labal for="author">Author : </labal><input id="author" name="author"/>
         <labal for="publisher">Publisher</labal>
-        <select name="publisher" id="publisher">
+        <select name="publisher_id" id="publisher">
             {% for publisher in publishers %}
-            <option>
-                {{publisher.getName()}}
-            </option>
+            <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
             {% endfor %}
         </select>
         <labal for="price">Price : </labal><input id="price" name="price"/>
         <input type="submit" value="Save"/>
     </form>
     {% endif %}
-
 </section>
 </body>
 </html>

@@ -17,7 +17,6 @@ class BookFactory{
         publisher.setAddress(bookRaw.address);
         publisher.setPhone(bookRaw.phone);
         book.setPublisher(publisher);
-        console.log(book);
         return book;
     }
 

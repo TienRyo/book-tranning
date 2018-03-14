@@ -1,3 +1,5 @@
+const PublisherSearchCondition = require('../../src/publisher/publisher-provider');
+const connection = require('../../database/connection');
 class BookController {
 
     constructor() {
@@ -5,17 +7,16 @@ class BookController {
     }
 
     createBook(request, response, next) {
-        response.render('index');
         let repo = request.app.get('books.repo');
         repo.add(request.book).then(result=> {
-            response.status(201).json(result.toJson());
+            response.status(201).render('home.njk', { books :result[0]});
         }).catch(next);
     }
 
     deleteBook(request, response) {
         let repo = request.app.get('books.repo');
         repo.remove(request.params.id).then(()=> {
-            response.status(200).json({message:'Success'});
+            response.render('home.njk')
         });
     }
 
@@ -28,7 +29,7 @@ class BookController {
 
     detail(request, response, next) {
         request.app.get('book.searcher').search(request.condition)
-            .then((results) => response.render('detail.njk', { book : results}))
+            .then(results => response.render('detail.njk', { book : results[0]}))
             .catch(next)
     }
     search(request, response, next) {
@@ -37,9 +38,16 @@ class BookController {
             .catch(next)
     }
     save(request, response, next) {
-        request.app.get('book.searcher').search(request.condition)
-            .then((results) => response.render('save.njk', { book : results}))
-            .catch(next)
+        let publisher = new PublisherSearchCondition(connection);
+        publisher.describe().then(publishers =>{
+        if(request.params.id) {
+            request.app.get('book.searcher').search(request.condition)
+                .then((results) => response.render('save.njk', { book : results[0], publishers : publishers}))
+        } else {
+            response.render('save.njk', { publishers : publishers})
+            .catch(next);
+        }
+        })
     }
 }
 

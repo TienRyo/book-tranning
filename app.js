@@ -14,11 +14,7 @@ let index = require('./routes/index');
 
 let app = express();
 
-nunjucks.configure('views', {
-    autoescape: true,
-    express: app
-});
-
+app.use(express.static(path.join('public')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,6 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('books.repo', new BookRepository(connection));
 app.set('book.searcher', new Searcher(connection, new BookFactory()));
 app.set('publisher.searcher',new PublisherSearch(connection));
+
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
 
 app.use('/', index);
 
