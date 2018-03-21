@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>BOOKS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <header>
@@ -16,9 +17,22 @@
     <small>
         {{ book.getPrice()}}
     </small>
+    <form action="/books">
     <small>
         <a href="/book/save/{{ book.getId() }}">Edit</a>
-        <a href="/book/delete/{{ book.getId() }}">Delete</a>
+        <button id= "{{ book.getId()}}">Delete</button>
+        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        method : 'DELETE',
+                        url: "/book/delete/".concat(id),
+                    })
+                })
+            });
+        </script>
     </small>
+    </form>
 </body>
 </html>

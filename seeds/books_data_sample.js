@@ -5,10 +5,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('books').insert([
-        {title: 'rowValue1', author: 'tac gia', publisher_id: 1, price: 12000},
-        {title: 'rowValue1', author: 'tac gia', publisher_id: 1, price: 12000},
-        {title: 'rowValue1', author: 'tac gia', publisher_id: 1, price: 12000},
-        {title: 'rowValue1', author: 'tac gia', publisher_id: 1, price: 12000},
+        {title: 'Dragon ball', author: 'tac gia', publisher_id: 1, price: 12000},
+        {title: 'tam quoc', author: 'tac gia', publisher_id: 2, price: 12000},
+        {title: 'rowValue1', author: 'tac gia', publisher_id: 2, price: 12000},
+        {title: 'rowValue1', author: 'tac gia', publisher_id: 3, price: 12000},
         {title: 'rowValue1', author: 'tac gia', publisher_id: 1, price: 12000}
       ]);
     });

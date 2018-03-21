@@ -8,7 +8,9 @@ const checkTitle      =  require('../http/middlerware/check-title-length');
 let bookController = new BookController();
 
 
-router.get('/book/save', bookController.save);
+router.get('/book/add', (req, res)=> {
+    res.render('add.njk')
+});
 
 router.get('/book/delete/:id', bookController.deleteBook);
 
@@ -20,12 +22,20 @@ router.get('/books', check.searchCondition, bookController.search);
 
 router.post('/book', check.bookRequest, checkTitle, checkAuthor, bookController.createBook);
 
-router.post('/book/:id', check.bookRequest, checkTitle, checkAuthor, bookController.editBook);
+/*router.post('/book/:id', check.bookRequest, checkTitle, checkAuthor, bookController.editBook);*/
 
-router.delete('/book/:id', bookController.deleteBook);
+router.put('/book/:id', check.bookRequest, checkTitle, checkAuthor, bookController.editBook);
 
-router.get('/search-advance', check.searchCondition, bookController.search);
+router.delete('/book/delete/:id', bookController.deleteBook);
 
-router.get('/search-basic', check.searchCondition, bookController.search);
+router.get('/search-advance', check.searchCondition, bookController.searchBasic);
+
+router.get('/api/books', check.searchCondition, bookController.searchBasic);
+
+router.get('/searcher', check.searchCondition, bookController.searchKeyword);
+
+router.get('/', (req, res) => {
+    res.render('add.njk');
+});
 
 module.exports = router;

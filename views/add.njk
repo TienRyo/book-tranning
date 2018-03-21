@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/jquery/save.js"></script>
+</head>
+<body>
+<header>
+    <a href="/books">HOME</a>
+</header>
+<section>
+    <label for="title">Title : </label><input id="title" name="title"/>
+    <label for="author">Author : </label><input id="author" name="author"/><label id="messageAuthor"></label>
+    <label for="publisher">Publisher</label><input id="publisher" name="price"/><label id="messagePublisher"></label>
+    <label for="price">Price : </label><input id="price" name="price"/>
+    <input type="submit" id="post" value="Save"/>
+    <br><label id="message"></label>
+</section>
+</body>
+<script type="text/html" id="authorTemplate">
+    <label>:message:</label>
+</script>
+<script type="text/html" id="publisherTemplate">
+    <span id=":id:">:message:</span>
+</script>
+</html>

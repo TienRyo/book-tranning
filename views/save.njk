@@ -1,46 +1,34 @@
 <html>
 <head>
     <title>ADD book</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/jquery/save.js"></script>
 </head>
 <body>
 <header>
-    <p>CREATE BOOK</p>
+    <p>EDIT BOOK</p>
 </header>
-<nav>
-    <a href="">HOME</a>
-    <a href="">LIST OF BOOKS</a>
-    <a href="">AUTHOR</a>
-    <a href="">PUBLISHER</a>
-</nav>
 <section>
-    <br>
-    {% if book %}
-    <form method="post" action="/book/{{ book.getId() }}" role="form">
-        <labal for="title">Title : </labal><input id="title" name="title" value="{{ book.getTitle() }}"/>
-        <labal for="author">Author : </labal><input id="author" name="author" value="{{ book.getAuthor() }}"/>
-        <labal for="publisher">Publisher</labal>
-        <select name="publisher_id" id="publisher">
-            {% for publisher in publishers %}
-            <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
-            {% endfor %}
-        </select>
-        <labal for="price">Price : </labal><input id="price" name="price" value="{{ book.getPrice() }}"/>
-        <input type="submit" value="Save"/>
+
+    <div id="{{book.getId()}}" publisher-id = "{{book.getPublisher().getId()}}">
+    <label for="title">Title : </label>
+    <input id="title" name="title" value="{{ book.getTitle() }}"/>
+    <label for="author">Author : </label>
+    <input id="author" name="author" value="{{ book.getAuthor() }}"/><label id="messageAuthor"></label>
+    <label for="publisher">Publisher</label>
+    <input id="publisher" name="publisher" value="{{book.getPublisher().getName()}}"><label id="messagePublisher"></label>
+    <label for="price">Price : </label>
+    <input id="price" name="price" value="{{ book.getPrice() }}"/>
+    </div>
+    <form action="/books">
+        <input type="submit" id="put" value="Save"/>
     </form>
-    {% else %}
-    <form method="post" action="/book" role="form">
-        <labal for="title">Title : </labal><input id="title" name="title"/>
-        <labal for="author">Author : </labal><input id="author" name="author"/>
-        <labal for="publisher">Publisher</labal>
-        <select name="publisher_id" id="publisher">
-            {% for publisher in publishers %}
-            <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
-            {% endfor %}
-        </select>
-        <labal for="price">Price : </labal><input id="price" name="price"/>
-        <input type="submit" value="Save"/>
-    </form>
-    {% endif %}
 </section>
 </body>
+<script type="text/html" id="authorTemplate">
+    <label>:message:</label>
+</script>
+<script type="text/html" id="publisherTemplate">
+    <span id=":id:">:message:</span>
+</script>
 </html>
