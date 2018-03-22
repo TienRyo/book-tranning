@@ -1,6 +1,8 @@
+$(document).ready(function () {
+    $('#advance').toggle();
+});
 $(document).ready(function(){
     $("#search").change(function(){
-        $('#list-book').hide();
         var keyword = $(this).val();
             $.get("/api/books",{
             keyword : keyword,
@@ -10,17 +12,22 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#searchBasic").click(function(){
-        $('#list-book').hide();
-        var keyword = $(this).val();
+        var keyword = $('#search').val();
         $.get("/api/books",{
             keyword : keyword,
         }).then(template);
     });
 });
 
+$(document).ready(function () {
+    $('#btn').click(function () {
+        $('#advance').toggle();
+    })
+});
+
+
 $(document).ready(function(){
     $("#searchAdvance").click(function(){
-        $('#list-book').hide();
         var title = $('#title').val();
         var author = $('#author').val();
         var publisher = $('#publisher').val();

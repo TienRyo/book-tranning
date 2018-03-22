@@ -1,38 +1,48 @@
 <html>
 <head>
     <title>BOOKS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
-    <h1>
-        <a href="/book/save/{{ book.getId() }}">{{book.getTitle()}}</a>
-    </h1>
-    <small>
-        {{ book.getAuthor()}}
-    </small>
-    <small>
-        {{ book.getPublisher().getName()}}
-    </small>
-    <small>
-        {{ book.getPrice()}}
-    </small>
-    <form action="/books">
-    <small>
-        <a href="/book/save/{{ book.getId() }}">Edit</a>
-        <button id= "{{ book.getId()}}">Delete</button>
-        <script>
-            $(document).ready(function(){
-                $("button").click(function(){
-                    var id = $(this).attr('id');
-                    $.ajax({
-                        method : 'DELETE',
-                        url: "/book/delete/".concat(id),
-                    })
-                })
-            });
-        </script>
-    </small>
-    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4">
+                <div>
+                    <h1>
+                        <a href="/book/save/{{ book.getId() }}">{{book.getTitle()}}</a>
+                    </h1>
+                </div>
+                <div>
+                    <ul>
+                        <li><h2><label>Author : </label>{{ book.getAuthor()}}</h2></li>
+                        <li><h2><label>Publisher : </label>{{ book.getPublisher().getName()}}</h2></li>
+                        <li><h2><label>Price : </label>{{ book.getPrice()}}</h2></li>
+                    </ul>
+                </div>
+                <div>
+                    <form action="/book/save/{{book.getId()}}">
+                        <button class="btn">Edit </button>
+                    </form>
+                    <form action="/books">
+                    <button class="btn" id = "{{ book.getId()}}">Delete</button>
+                    <script>
+                        $(document).ready(function(){
+                            $("button").click(function(){
+                                var id = $(this).attr('id');
+                                $.ajax({
+                                    method : 'DELETE',
+                                    url: "/book/delete/".concat(id),
+                                })
+                            })
+                        });
+                    </script>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

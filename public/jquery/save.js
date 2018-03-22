@@ -48,7 +48,7 @@ $(document).ready(function () {
         $.post('/book', {
             title        : $('#title').val(),
             author       : $('#author').val(),
-            publisher_id : $('span').attr('id'),
+            publisher_id : $('#publisherId').attr('data-id'),
             price        : $('#price').val(),
         }).then(()=>{
             var template = $('#authorTemplate').html();
@@ -56,18 +56,22 @@ $(document).ready(function () {
                 return template.replace(':message:','success')
             };
             $('#message').html(resultHTML());
+            $('#title').val('');
+            $('#author').val('');
+            $('#publisher').val('');
+            $('#price').val('');
         })
     })
 })
 $(document).ready(function () {
     $('#put').click(function () {
         $.ajax({
-            url : '/book/'.concat($('div').attr('id')),
+            url : '/book/'.concat($('#book').attr('data-bookId')),
             method : 'PUT',
             data: {
                 title: $('#title').val(),
                 author: $('#author').val(),
-                publisher_id: $('span').attr('id') ? $('span').attr('id') : $('div').attr('publisher-id'),
+                publisher_id: $('#publisherId').attr('data-id') ? $('#publisherId').attr('data-id') : $('#book').attr('data-publisherId'),
                 price: $('#price').val(),
             }}).then(()=>{
             var template = $('#authorTemplate').html();

@@ -1,34 +1,57 @@
 <html>
 <head>
     <title>ADD book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/jquery/save.js"></script>
 </head>
 <body>
 <header>
-    <p>EDIT BOOK</p>
+    <nav>
+        <a href="/books" class="list-group-item">HOME</a>
+    </nav>
 </header>
 <section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-3">
+                <div class="row">
+                    <div data-bookId="{{book.getId()}}" data-publisherId="{{book.getPublisher().getId()}}" id ="book">
+                        <div class="col-md-8">
+                            <label for="title">Title : </label>
+                            <input id="title" class="form-control" name="title" value="{{ book.getTitle() }}"/>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="author">Author : </label>
+                            <input id="author" name="author" class="form-control" value="{{ book.getAuthor() }}"/><label id="messageAuthor"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="publisher">Publisher</label>
+                            <input id="publisher" name="publisher" class="form-control" value="{{book.getPublisher().getName()}}"><label id="messagePublisher"></label>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="price">Price : </label>
+                            <input id="price" name="price" class="form-control" value="{{ book.getPrice() }}"/>
+                        </div>
+                        <div class="col-md-8">
+                            <br>
+                            <form action="/books">
+                                <button class="btn" id="put">save</button>
+                            </form>
+                        </div>
+                    </div>
 
-    <div id="{{book.getId()}}" publisher-id = "{{book.getPublisher().getId()}}">
-    <label for="title">Title : </label>
-    <input id="title" name="title" value="{{ book.getTitle() }}"/>
-    <label for="author">Author : </label>
-    <input id="author" name="author" value="{{ book.getAuthor() }}"/><label id="messageAuthor"></label>
-    <label for="publisher">Publisher</label>
-    <input id="publisher" name="publisher" value="{{book.getPublisher().getName()}}"><label id="messagePublisher"></label>
-    <label for="price">Price : </label>
-    <input id="price" name="price" value="{{ book.getPrice() }}"/>
+                </div>
+            </div>
+        </div>
     </div>
-    <form action="/books">
-        <input type="submit" id="put" value="Save"/>
-    </form>
 </section>
 </body>
 <script type="text/html" id="authorTemplate">
     <label>:message:</label>
 </script>
 <script type="text/html" id="publisherTemplate">
-    <span id=":id:">:message:</span>
+    <span id="publisherId" data-id=":id:">:message:</span>
 </script>
 </html>

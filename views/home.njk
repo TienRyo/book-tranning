@@ -1,36 +1,69 @@
 <html>
 <head>
     <title>BOOKS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/jquery/jquery.js"></script>
 </head>
 <body>
-<nav>
-    <a href="/book/add">CREATE BOOK</a>
-</nav>
 <section>
-    <input name="keyword" id="search">
-    <button id="searchBasic">submit</button>
-    <label for="title">Title : </label><input id="title" type="text" name="title">
-    <label for="author">Author : </label><input id="author" type="text" name="author">
-    <label for="publisher">Publisher : </label><input  id="publisher" type="text" name="publisher">
-    <input id="searchAdvance" type="submit">
-    <ul class="list-group" id="viewBooks">
-
-    </ul>
-    <div id="list-book">
-        <ul>
-        {% for book in books %}
-            <li>
-                <a href="/book/detail/{{book.getId()}}">{{ book.getTitle() }}-{{ book.getPublisher().getName()}}</a>
-            </li>
-        {% endfor %}
-        </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="list-group col-md-offset">
+                        <form action="/book/add">
+                            <button class="btn">ADD BOOK</button>
+                        </form>
+                            <button id="btn" class="btn">Search Advance</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="list-group">
+                        <div class="col-md-10">
+                            <input name="keyword" class="form-control" id="search">
+                        </div>
+                        <div class="col-md-2">
+                            <button id="searchBasic" class="btn btn-block"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div id="advance" class="row">
+                    <div class="list-group">
+                        <div class="col-md-4">
+                            <label for="title">Title</label><input class="form-control" id="title" type="text" name="title">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="author">Author</label><input id="author" class="form-control" type="text" name="author">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="publisher">Publisher</label><input  id="publisher" class="form-control" type="text" name="publisher">
+                        </div>
+                        <div class="col-md-2">
+                            <br>
+                            <button id="searchAdvance" class="btn btn-block">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div id="list-book">
+                    <ul class="list-group" id="viewBooks">
+                        {% for book in books %}
+                        <li class="list-group-item">
+                            <a href="/book/detail/{{book.getId()}}">{{ book.getTitle() }}-{{ book.getPublisher().getName()}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-
 </body>
 <script id="bookTemplate" type="text/html">
-    <li><a href="/book/detail/:id:">:bookTitle: - :bookAuthor:</a></li>
+    <li class="list-group-item">
+        <a href="/book/detail/:id:">:bookTitle: - :bookAuthor:</a>
+    </li>
 </script>
 </html>
