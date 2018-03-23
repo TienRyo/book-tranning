@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 50px;
+        }
+        #navigator {
+            transition: opacity 500ms;
+            opacity: .7;
+        }
+        #navigator:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-fixed-top navbar-default" id="navigator">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsedList" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/books" class="navbar-brand">BOOKS</a>
+        </div>
+        <div class="content-fluid">
+            <div class="collapse navbar-collapse" id="collapsedList">
+                <ul class="navbar-nav nav">
+                    <li><a href="/books">HOME</a></li>
+                    <li><a href="/book/add">Create Book</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+{% block content %}
+{% endblock %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/jquery/jquery.js"></script>
+</html>

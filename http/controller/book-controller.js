@@ -18,7 +18,6 @@ class BookController {
     }
 
     editBook(request, response) {
-        console.log(request.book);
         let repo = request.app.get('books.repo');
         repo.edit(request.book).then((result)=> {
             response.json(result);
@@ -29,7 +28,6 @@ class BookController {
         request.app.get('book.searcher').search(request.condition)
             .then(results => {
                 if(results)
-                    console.log(results);
                     response.render('detail.njk', {book : results[0]});
             })
             .catch(next)

@@ -1,50 +1,41 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/jquery/save.js"></script>
-</head>
-<body>
-<header>
-    <form action="/books">
-        <button class="btn">HOME</button>
-    </form>
-</header>
+{% extends 'create.njk' %}
+{% block content %}
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="title">Title : </label><input class="form-control" id="title" name="title"/>
+            <div class="container-fluid col-md-6 col-md-offset-3">
+                <div class="row panel panel-default">
+                    <div class="panel-heading">
+                        <h1>CREATE BOOK</h1>
                     </div>
-                    <div class="col-md-6">
-                        <label for="author">Author : </label><input id="author" class="form-control" name="author"/><label id="messageAuthor"></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="publisher">Publisher</label><input id="publisher" class="form-control" name="price"/><label id="messagePublisher"></label>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="price">Price : </label><input id="price" class="form-control" name="price"/>
+                    <div class="panel-body">
+                        <div>
+                            <label for="title">Title : </label><input class="form-control" id="title" name="title"/>
+                        </div>
+                        <div>
+                            <label for="author">Author : </label><input id="author" class="form-control" name="author"/><label id="messageAuthor"></label>
+                        </div>
+                        <div>
+                            <label for="publisher">Publisher</label><input id="publisher" class="form-control" name="price"/><label id="messagePublisher"></label>
+                        </div>
+                        <div>
+                            <label for="price">Price : </label><input id="price" class="form-control" name="price"/>
 
+                        </div>
+                        <div>
+                            <button id="post" class="btn">save</button>
+                        </div>
+                        <label id="message"></label>
                     </div>
                 </div>
-                <div>
-                    <button id="post" class="btn">save</button>
-                </div>
-                <br><label id="message"></label>
             </div>
         </div>
     </div>
 </section>
-</body>
 <script type="text/html" id="authorTemplate">
     <label>:message:</label>
 </script>
 <script type="text/html" id="publisherTemplate">
     <span id="publisherId" data-id=":id:">:message:</span>
 </script>
-</html>
+{% endblock %}

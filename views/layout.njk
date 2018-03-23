@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 50px;
+        }
+        #navigator {
+            transition: opacity 500ms;
+            opacity: .7;
+        }
+        #navigator:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-fixed-top navbar-default" id="navigator">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsedList" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/books" class="navbar-brand">BOOKS</a>
+        </div>
+        <div class="content-fluid">
+            <div class="collapse navbar-collapse" id="collapsedList">
+                <ul class="navbar-nav nav">
+                    <li><a href="#" id="formAdvance">Search Advance</a></li>
+                    <li><a href="/book/add">Create Book</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section>
+    <div style="
+    margin-top: -50px;
+    background-image: url(https://winona.lib.mn.us/wp-content/uploads/2017/03/open_book-768x384.jpg);
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 400px;
+    ">
+        <div class="container-fluid" style="margin-top: 100px">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row" id="Basic" >
+                    <div class="col-md-10">
+                        <form id='formSearch'>
+                            <input name="keyword" class="form-control" id="search">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="searchBasic" class="form-control btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                <div id="advance" class="row">
+                    <div class="list-group">
+                        <div class="col-lg-4">
+                            <input class="form-control" id="title" type="text" name="title" placeholder="Title...">
+                        </div>
+                        <div class="col-lg-3">
+                            <input id="author" class="form-control" type="text" name="author" placeholder="Author...">
+                        </div>
+                        <div class="col-lg-3">
+                            <input  id="publisher" class="form-control" type="text" placeholder="Publisher..." name="publisher">
+                        </div>
+                        <div class="col-lg-2">
+                            <button id="searchAdvance" class="form-control"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% block content %}
+
+{% endblock %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/jquery/jquery.js"></script>
+</html>

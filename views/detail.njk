@@ -1,48 +1,41 @@
-<html>
-<head>
-    <title>BOOKS</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<header>
+{% extends 'create.njk' %}
+{% block content %}
+<section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 col-md-offset-4">
-                <div>
-                    <h1>
-                        <a href="/book/save/{{ book.getId() }}">{{book.getTitle()}}</a>
-                    </h1>
-                </div>
-                <div>
-                    <ul>
-                        <li><h2><label>Author : </label>{{ book.getAuthor()}}</h2></li>
-                        <li><h2><label>Publisher : </label>{{ book.getPublisher().getName()}}</h2></li>
-                        <li><h2><label>Price : </label>{{ book.getPrice()}}</h2></li>
-                    </ul>
-                </div>
-                <div>
-                    <form action="/book/save/{{book.getId()}}">
-                        <button class="btn">Edit </button>
-                    </form>
-                    <form action="/books">
-                    <button class="btn" id = "{{ book.getId()}}">Delete</button>
-                    <script>
-                        $(document).ready(function(){
-                            $("button").click(function(){
-                                var id = $(this).attr('id');
-                                $.ajax({
-                                    method : 'DELETE',
-                                    url: "/book/delete/".concat(id),
-                                })
-                            })
-                        });
-                    </script>
-                    </form>
+            <div class="container-fluid col-md-6 col-md-offset-3">
+                <div class="row panel panel-default">
+                    <div class="panel-heading">
+                        <h1>CREATE BOOK</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <label for="title">Title : </label><input class="form-control" id="title" name="title"/>
+                        </div>
+                        <div>
+                            <label for="author">Author : </label><input id="author" class="form-control" name="author"/><label id="messageAuthor"></label>
+                        </div>
+                        <div>
+                            <label for="publisher">Publisher</label><input id="publisher" class="form-control" name="price"/><label id="messagePublisher"></label>
+                        </div>
+                        <div>
+                            <label for="price">Price : </label><input id="price" class="form-control" name="price"/>
+
+                        </div>
+                        <div>
+                            <button id="post" class="btn">save</button>
+                        </div>
+                        <label id="message"></label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</section>
+<script type="text/html" id="authorTemplate">
+    <label>:message:</label>
+</script>
+<script type="text/html" id="publisherTemplate">
+    <span id="publisherId" data-id=":id:">:message:</span>
+</script>
+{% endblock %}

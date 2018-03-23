@@ -1,44 +1,35 @@
-<html>
-<head>
-    <title>ADD book</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/jquery/save.js"></script>
-</head>
-<body>
-<header>
-    <nav>
-        <a href="/books" class="list-group-item">HOME</a>
-    </nav>
-</header>
+{% extends 'create.njk' %}
+{% block content %}
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 col-md-offset-3">
-                <div class="row">
-                    <div data-bookId="{{book.getId()}}" data-publisherId="{{book.getPublisher().getId()}}" id ="book">
-                        <div class="col-md-8">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row panel panel-default">
+                    <div class="container-fluid" data-bookId="{{book.getId()}}" data-publisherId="{{book.getPublisher().getId()}}" id ="book">
+                        <div class="panel-heading">
+                            <h1>UPDATE BOOK</h1>
+                        </div>
+                        <div>
                             <label for="title">Title : </label>
                             <input id="title" class="form-control" name="title" value="{{ book.getTitle() }}"/>
                         </div>
-                        <div class="col-md-8">
+                        <div>
                             <label for="author">Author : </label>
                             <input id="author" name="author" class="form-control" value="{{ book.getAuthor() }}"/><label id="messageAuthor"></label>
                         </div>
-                        <div class="col-md-8">
+                        <div>
                             <label for="publisher">Publisher</label>
                             <input id="publisher" name="publisher" class="form-control" value="{{book.getPublisher().getName()}}"><label id="messagePublisher"></label>
                         </div>
-                        <div class="col-md-8">
+                        <div>
                             <label for="price">Price : </label>
                             <input id="price" name="price" class="form-control" value="{{ book.getPrice() }}"/>
                         </div>
-                        <div class="col-md-8">
-                            <br>
-                            <form action="/books">
-                                <button class="btn" id="put">save</button>
-                            </form>
+                        <div class="form-group">
+                            <button id="put" class="btn btn-success btn-block">
+                                <i class="glyphicon glyphicon-save"></i>
+                                <span class="hidden-sm hidden-xs">SAVE</span>
+                            </button>
                         </div>
                     </div>
 
@@ -47,11 +38,10 @@
         </div>
     </div>
 </section>
-</body>
 <script type="text/html" id="authorTemplate">
     <label>:message:</label>
 </script>
 <script type="text/html" id="publisherTemplate">
     <span id="publisherId" data-id=":id:">:message:</span>
 </script>
-</html>
+{% endblock %}
